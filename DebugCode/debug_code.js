@@ -6,26 +6,37 @@ function performOperation() {
     // Check if inputs are valid numbers
     if (!isNaN(num1) && !isNaN(num2)) {
         // Perform the operation
-        let result = multiply(num1, num2);
+        let results = arithmetic_operations(num1, num2);
 
         // Display the result
-        displayResult(result);
+        displayResult(results);
     } else {
         displayResult('Please enter valid numbers');
     }
 }
 
-function multiply(a, b) {
+function arithmetic_operations(a, b) {
     // Introduce a debugger statement to pause execution
     debugger;
 
-    // Multiply the numbers
-    return a * b;
+    let operations = [];
+
+    operations.push(a + b);
+    operations.push(a - b);
+    operations.push(a * b);
+    try {
+        operations.push(a / b);
+    } catch (error) {
+        operations.push("div 0");
+    }
+
+    return operations
 }
 
-function displayResult(result) {
+function displayResult(results) {
     // Display the result in the paragraph element
     const resultElement = document.getElementById('result');
-    resultElement.textContent = `The result is: ${result}`;
+    display_results = results.map((result) => `<p>The result is: ${result}</p>`).join('');
+    resultElement.innerHTML = display_results
 }
         
